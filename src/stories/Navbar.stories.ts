@@ -9,37 +9,15 @@ export default meta;
 
 type Story = StoryObj<typeof Navbar>;
 
-const navItems = [
-  {
-    href: "https://app.soroswap.finance/balance",
-    label: "Balance",
-    target: "_blank",
-  },
-  {
-    href: "https://app.soroswap.finance/swap",
-    label: "Swap",
-    target: "_blank",
-  },
-  {
-    href: "https://app.soroswap.finance/liquidity",
-    label: "Liquidity",
-    target: "_blank",
-  },
-  {
-    href: "https://app.soroswap.finance/bridge",
-    label: "Bridge",
-    target: "_blank",
-  },
-  {
-    href: "/",
-    label: "Info",
-    target: "_self",
-    active: true,
-  },
-];
-
 export const Default: Story = {
   args: {
-    navItems,
+    onClickItem: (item) => {
+      if (item.path === "/") {
+        window.open(`https://info.soroswap.finance`, "_blank");
+      } else {
+        window.open(`https://app.soroswap.finance${item.path}`, "_blank");
+      }
+    },
+    isActiveItem: (item) => item.label === "Swap",
   },
 };

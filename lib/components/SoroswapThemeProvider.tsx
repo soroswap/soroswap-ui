@@ -1,4 +1,4 @@
-import { ThemeProvider } from "@mui/material/styles";
+import { Theme, ThemeProvider } from "@mui/material/styles";
 import { theme } from "../themes";
 import { CssBaseline, PaletteMode } from "@mui/material";
 import { Global, css } from "@emotion/react";
@@ -10,12 +10,13 @@ const GlobalStyle = css`
 
 interface Props {
   children: React.ReactNode;
-  theme: PaletteMode;
+  theme?: PaletteMode;
+  customTheme?: Theme;
 }
 
 export function SoroswapThemeProvider(props: Props) {
   return (
-    <ThemeProvider theme={theme(props.theme)}>
+    <ThemeProvider theme={props.customTheme ?? theme(props.theme ?? "dark")}>
       <CssBaseline />
       <Global styles={GlobalStyle} />
 
