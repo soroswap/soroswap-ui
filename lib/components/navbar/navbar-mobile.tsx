@@ -6,7 +6,7 @@ export interface NavBarMobileProps {
   menuWidth?: number;
   menuHeight?: number;
   drawerMarginTop?: number;
-  children?: React.ReactNode;
+  children: (setDrawerOpen: (open: boolean) => void) => React.ReactNode;
 }
 
 const NavBarMobile = ({
@@ -42,7 +42,7 @@ const NavBarMobile = ({
           },
         }}
       >
-        {children}
+        {children(setDrawerOpen)}
       </Drawer>
     </>
   );

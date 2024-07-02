@@ -42,16 +42,21 @@ export const Navbar = ({
   if (isMobile) {
     return (
       <NavBarMobile {...mobileProps}>
-        <Box display="flex" flexDirection="column" gap={1} py={1}>
-          <NavbarItems
-            navItems={navItems}
-            onClickItem={onClickItem}
-            isActiveItem={isActiveItem}
-            isMobile={isMobile}
-            fontSize={fontSizes[size]}
-          />
-          {mobileProps?.extraContent}
-        </Box>
+        {(setDrawerOpen) => (
+          <Box display="flex" flexDirection="column" gap={1} py={1}>
+            <NavbarItems
+              navItems={navItems}
+              onClickItem={(item) => {
+                onClickItem?.(item);
+                setDrawerOpen(false);
+              }}
+              isActiveItem={isActiveItem}
+              isMobile={isMobile}
+              fontSize={fontSizes[size]}
+            />
+            {mobileProps?.extraContent}
+          </Box>
+        )}
       </NavBarMobile>
     );
   }
