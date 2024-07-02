@@ -3,7 +3,7 @@ import { DEFAULT_NAV_ITEMS, NavItem } from "./items";
 
 const NavLinkItem = styled(Link, {
   shouldForwardProp: (prop) => prop !== "active" && prop !== "isMobile",
-})<{ active?: boolean; isMobile?: boolean }>`
+})<{ active?: boolean; isMobile?: boolean; fontSize?: number }>`
   display: flex;
   padding: 4px 20px;
   align-items: center;
@@ -14,7 +14,7 @@ const NavLinkItem = styled(Link, {
   color: ${({ theme, active }) =>
     active ? "#FFFFFF" : theme.palette.custom.textTertiary};
   font-family: Inter;
-  font-size: 16px;
+  font-size: ${({ fontSize }) => fontSize || 16}px;
   font-weight: 600;
   line-height: 140%;
   cursor: pointer;
@@ -25,6 +25,7 @@ export interface NavbarItemsProps {
   onClickItem?: (item: NavItem) => void;
   isActiveItem?: (item: NavItem) => boolean;
   isMobile?: boolean;
+  fontSize?: number;
 }
 
 const NavbarItems = ({
@@ -32,6 +33,7 @@ const NavbarItems = ({
   onClickItem,
   isActiveItem,
   isMobile,
+  fontSize = 16,
 }: NavbarItemsProps) => {
   return (
     <>
@@ -42,6 +44,7 @@ const NavbarItems = ({
           active={isActiveItem?.(item)}
           onClick={() => onClickItem?.(item)}
           underline="none"
+          fontSize={fontSize}
         >
           {item.label}
         </NavLinkItem>
