@@ -13,8 +13,8 @@ export const DEFAULT_NAV_ITEMS: NavItem[] = [
     label: "Swap",
   },
   {
-    path: "/liquidity",
-    label: "Liquidity",
+    path: "/pools",
+    label: "Pools",
   },
   {
     path: "/bridge",
